@@ -1,14 +1,17 @@
 <template lang="pug">
 .statement.columns
   .column
-    .statement__text {{ statement.name }}
+    .statement__text
+      i.icon.icon-flag
+      |&nbsp;  
+      | {{ statement.name }}
   .column.col-auto.text-right 
-    i.icon.icon-delete
+    a.icon.icon-delete(href='#delete')
 </template>
 
 <script>
 export default {
-  name: "CategoryStatement",
+  name: "CategoryCardStatement",
   props: {
     statement: {
       type: Object,

@@ -4,15 +4,13 @@
     .card-header
       .card-title 
         .columns
-          .column.col-2
-            span.chip
-              figure.avatar.avatar-sm(:data-initial="icon")
-              | {{ category.score }}
-          .column.col-8.text-center  
-            mark {{ category.name }}
-          .column.col-2
-            a.float-right    
-              i.icon.icon-delete  
+          .column
+            CategoryCardScore(:score='category.score')
+          .column.col-6.text-center  
+            mark.category-card__name {{ category.name }}
+          .column.text-right
+            a.category-card__delete
+              i.icon.icon-delete(href='#delete')  
     .card-body
       .columns
         .column.col-auto
@@ -20,37 +18,27 @@
             input.slider.vertical-slider(
               v-model.number="category.score" type="range" step="10" min="0" max="100")
         .column 
-          CategoryStatement(v-for="statement in category.statements" :statement="statement")
+          CategoryCardStatement(v-for="statement in category.statements" :statement="statement")
           .add-new-statement
-            a.icon.icon-plus.float-right
+            a.icon.icon-plus.float-right(href="#add")
 </template>
 
 <script>
-import CategoryStatement from "./CategoryStatement.vue";
+import CategoryCardStatement from "./CategoryCardStatement.vue";
+import CategoryCardScore from "./CategoryCardScore.vue";
 export default {
   components: {
-    CategoryStatement
+    CategoryCardStatement,
+    CategoryCardScore
   },
   name: "CategoryCard",
-  data: () => ({
-    icons: {
-      0: "💀",
-      100: "🤖"
-    }
-  }),
   props: {
     category: {
       type: Object,
       default: () => ({
         name: "Hello World",
-        statements: [],
-        score: 0
+        statements: []
       })
-    }
-  },
-  computed: {
-    icon() {
-      return this.icons[this.category.score] || "💩";
     }
   }
 };
@@ -59,8 +47,12 @@ export default {
 <style lang="sass">
 .category-card
   height: 100%
-  min-height: 235px
+  min-height: 240px
   border-radius: 10px !important
+
+  &__chip, &__name, &__delete
+    height: 1.6rem !important
+    line-height: 1.6rem
 
 .vertical-slider-wrapper
   width: 10px
@@ -68,9 +60,8 @@ export default {
   padding: 0
 
 .vertical-slider
-  width: 150px !important
-  height: 28px !important
-  transform-origin: 75px 75px
+  width: 120px !important
+  transform-origin: 66px 60px
   transform: rotate(-90deg)
 
   &:focus

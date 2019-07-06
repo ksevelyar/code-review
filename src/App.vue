@@ -4,8 +4,7 @@
     CategoryCard(v-for="category in categories" :key="category.id" :category="category")
     .column.my-2.col-md-12.col-xs-12.col-lg-6.col-4
       .add-new-category
-        .btn
-          a.icon.icon-plus     
+        a.icon.icon-plus(href="#add")     
 </template>
 
 <script>
@@ -28,13 +27,10 @@ export default {
         statements: [{ name: "Rubocop" }, { name: "ESLint" }]
       },
       {
-        name: "Perfomance",
+        name: "Bundle Size",
         id: 2,
         score: 0,
-        statements: [
-          { name: "Avoid n^2 algorithms" },
-          { name: "Use greedy algorihms" }
-        ]
+        statements: [{ name: "ES Modules" }, { name: "Brotli, Zopfli" }]
       },
       {
         name: "SOLID",
@@ -76,4 +72,6 @@ body
   display: flex
   justify-content: center
   align-items: center
+  border: 1px solid #e1e1ff
+  border-radius: 10px
 </style>
