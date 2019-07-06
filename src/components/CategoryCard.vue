@@ -10,7 +10,7 @@
             mark.category-card__name {{ category.name }}
           .column.text-right
             a.category-card__delete
-              i.icon.icon-delete(href='#delete')  
+              i.icon.icon-cross(href='#delete')  
     .card-body
       .columns
         .column.col-auto
@@ -26,6 +26,7 @@
 <script>
 import CategoryCardStatement from "./CategoryCardStatement.vue";
 import CategoryCardScore from "./CategoryCardScore.vue";
+
 export default {
   components: {
     CategoryCardStatement,
@@ -36,7 +37,7 @@ export default {
     category: {
       type: Object,
       default: () => ({
-        name: "Hello World",
+        name: "Best Practices",
         statements: []
       })
     }
