@@ -1,4 +1,5 @@
-# code_review
+# Code Review Dashboard
+![Screen](https://i.imgur.com/YVsE8is.png)
 
 ## Project setup
 ```
@@ -29,6 +30,3 @@ npm run lint
 ```
 npm run test:unit
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
