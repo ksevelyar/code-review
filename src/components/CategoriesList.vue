@@ -21,12 +21,26 @@ export default {
       type: Array,
       default: () => [
         {
-          name: "Auto Tests",
+          name: "Testing Pyramid",
           id: 0,
           score: 0,
           statements: [
-            { id: 0, name: "Test Driven Development" },
-            { id: 1, name: "Factories" }
+            { id: 0, name: "~10% E2E tests" },
+            { id: 1, name: "~30% Snapshots tests" },
+            { id: 2, name: "~60% Unit tests" }
+          ]
+        },
+        {
+          name: "Testing Methodology",
+          id: 0,
+          score: 0,
+          statements: [
+            { id: 11, name: "Decide the components I need" },
+            { id: 12, name: "Write unit tests and source code" },
+            { id: 13, name: "Style the components" },
+            { id: 14, name: "Add snapshot tests" },
+            { id: 15, name: "Test the code manually" },
+            { id: 16, name: "Write an end-to-end test" }
           ]
         },
         {
@@ -34,11 +48,11 @@ export default {
           id: 3,
           score: 0,
           statements: [
-            { id: 2, name: "Single responsibility" },
-            { id: 3, name: "Open/closed" },
-            { id: 4, name: "Liskov substitution" },
-            { id: 5, name: "Interface segregation" },
-            { id: 6, name: "Dependency inversion" }
+            { id: 21, name: "Single responsibility" },
+            { id: 22, name: "Open/closed" },
+            { id: 23, name: "Liskov substitution" },
+            { id: 24, name: "Interface segregation" },
+            { id: 25, name: "Dependency inversion" }
           ]
         }
       ]

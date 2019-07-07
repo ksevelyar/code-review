@@ -45,7 +45,7 @@ export default {
 <style lang="sass">
 .statement__text
   padding-left: 20px
-  height: 28px
+  min-height: 28px
 
 .statement__input
   margin-left: 20px
