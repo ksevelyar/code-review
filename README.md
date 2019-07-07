@@ -1,5 +1,5 @@
 # Code Review Dashboard [![Build Status](https://travis-ci.org/ksevelyar/code-review.svg?branch=master)](https://travis-ci.org/ksevelyar/code-review)
-![Screen](https://i.imgur.com/YVsE8is.png)
+![Screen](https://i.imgur.com/0Ud1YA0.png)
 
 ## Project setup
 ```
