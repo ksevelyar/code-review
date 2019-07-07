@@ -1,9 +1,9 @@
-# Code Review Dashboard
+# Code Review Dashboard [![Build Status](https://travis-ci.org/ksevelyar/code-review.svg?branch=master)](https://travis-ci.org/ksevelyar/code-review)
 ![Screen](https://i.imgur.com/YVsE8is.png)
 
 ## Project setup
 ```
-npm install
+npm i
 ```
 
 ### Compiles and hot-reloads for development
@@ -16,17 +16,7 @@ npm run serve
 npm run build
 ```
 
-### Run your tests
+### Run tests
 ```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Run your unit tests
-```
-npm run test:unit
+npm t
 ```
