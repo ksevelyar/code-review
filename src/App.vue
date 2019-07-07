@@ -1,6 +1,7 @@
 <template lang="pug">
-#app.container.grid-xl
-  CategoriesList
+#app
+  .container.grid-xl
+    CategoriesList
 </template>
 
 <script>

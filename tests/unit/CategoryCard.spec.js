@@ -9,4 +9,11 @@ describe("CategoryCard.vue", () => {
     });
     expect(wrapper.text()).toMatch(category.name);
   });
+
+  it("removes a category card", () => {
+    const wrapper = shallowMount(CategoryCard);
+
+    wrapper.find(".category-card__delete").trigger("click");
+    expect(wrapper.emitted("destroyCard")).toHaveLength(1);
+  });
 });

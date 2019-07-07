@@ -7,10 +7,13 @@
           .column
             CategoryCardScore(:score='category.score')
           .column.col-6.text-center  
-            mark.category-card__name {{ category.name }}
+            mark.category-card__name(v-show='!isNameEditable'
+              @click="editName") {{ category.name }}
+            input.form-input.input-sm.text-center(v-show='isNameEditable' ref="categoryName" 
+              v-on:keyup.enter="saveName" @blur="saveName" v-model="category.name")  
           .column.text-right
-            a.category-card__delete
-              i.icon.icon-cross(href='#delete')  
+            a.category-card__delete(@click.prevent='destroyCard' href='#delete')
+              i.icon.icon-cross  
     .card-body
       .columns
         .column.col-auto
@@ -18,9 +21,10 @@
             input.slider.vertical-slider(
               v-model.number="category.score" type="range" step="10" min="0" max="100")
         .column 
-          CategoryCardStatement(v-for="statement in category.statements" :statement="statement")
+          CategoryCardStatement(v-for="statement in category.statements" 
+            :key="statement.id" :statement="statement" @destroyStatement="destroyStatement")
           .add-new-statement
-            a.icon.icon-plus.float-right(href="#add")
+            a.icon.icon-plus.float-right(href="#add" @click.prevent="addStatement")
 </template>
 
 <script>
@@ -28,16 +32,52 @@ import CategoryCardStatement from "./CategoryCardStatement.vue";
 import CategoryCardScore from "./CategoryCardScore.vue";
 
 export default {
+  name: "CategoryCard",
+  data: () => ({
+    isNameEditable: false
+  }),
   components: {
     CategoryCardStatement,
     CategoryCardScore
   },
-  name: "CategoryCard",
+  methods: {
+    newId() {
+      return new Date().getTime();
+    },
+    addStatement() {
+      this.category.statements.push({
+        name: `Example #${this.statementsCount}`,
+        id: this.newId()
+      });
+    },
+    destroyCard() {
+      this.$emit("destroyCard", this.category.id);
+    },
+    destroyStatement(id) {
+      this.category.statements = this.category.statements.filter(
+        statement => statement.id !== id
+      );
+    },
+    editName() {
+      this.isNameEditable = true;
+      this.$nextTick(() => this.$refs.categoryName.focus());
+    },
+    saveName() {
+      this.isNameEditable = false;
+    }
+  },
+  computed: {
+    statementsCount() {
+      return this.category.statements.length + 1;
+    }
+  },
   props: {
     category: {
       type: Object,
       default: () => ({
-        name: "Best Practices",
+        id: 0,
+        name: "Best Practices Category",
+        score: 0,
         statements: []
       })
     }
@@ -48,7 +88,7 @@ export default {
 <style lang="sass">
 .category-card
   height: 100%
-  min-height: 240px
+  min-height: 230px
   border-radius: 10px !important
 
   &__chip, &__name, &__delete
@@ -72,5 +112,5 @@ export default {
     border: 0
 
 .add-new-statement
-  margin-top: 1.2rem
+  margin-top: 0.2rem
 </style>

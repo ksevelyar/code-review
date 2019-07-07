@@ -1,17 +1,23 @@
 <template lang="pug">
 .columns.categories
-  CategoryCard(v-for="category in categories" :key="category.id" :category="category")
+  CategoryCard(v-for="category in categories" :key="category.id"
+    @destroyCard="destroyCard" :category="category")
   .column.my-2.col-md-12.col-xs-12.col-lg-6.col-4
-    .add-new-category
-      a.icon.icon-plus(href="#add")     
+    a.add-new-category.c-hand(@click="addCategory")
+      i.icon.icon-plus     
 </template>
 
 <script>
 import CategoryCard from "./CategoryCard.vue";
 
 export default {
+  data() {
+    return {
+      categories: this.defaultCategories
+    };
+  },
   props: {
-    categories: {
+    defaultCategories: {
       type: Array,
       default: () => [
         {
@@ -19,35 +25,44 @@ export default {
           id: 0,
           score: 0,
           statements: [
-            { name: "Test Driven Development" },
-            { name: "Factories" }
+            { id: 0, name: "Test Driven Development" },
+            { id: 1, name: "Factories" }
           ]
-        },
-        {
-          name: "Static Analyzers",
-          id: 1,
-          score: 0,
-          statements: [{ name: "Rubocop" }, { name: "ESLint" }]
-        },
-        {
-          name: "Bundle Size",
-          id: 2,
-          score: 0,
-          statements: [{ name: "ES Modules" }, { name: "Brotli, Zopfli" }]
         },
         {
           name: "SOLID",
           id: 3,
           score: 0,
           statements: [
-            { name: "Single responsibility" },
-            { name: "Open/closed" },
-            { name: "Liskov substitution" },
-            { name: "Interface segregation" },
-            { name: "Dependency inversion" }
+            { id: 2, name: "Single responsibility" },
+            { id: 3, name: "Open/closed" },
+            { id: 4, name: "Liskov substitution" },
+            { id: 5, name: "Interface segregation" },
+            { id: 6, name: "Dependency inversion" }
           ]
         }
       ]
+    }
+  },
+  computed: {
+    categoriesLength() {
+      return this.categories.length + 1;
+    }
+  },
+  methods: {
+    destroyCard(id) {
+      this.categories = this.categories.filter(cat => cat.id !== id);
+    },
+    newId() {
+      return new Date().getTime();
+    },
+    addCategory() {
+      this.categories.push({
+        id: this.newId(),
+        name: `Category #${this.categoriesLength}`,
+        score: 0,
+        statements: [{ name: "Example #1" }]
+      });
     }
   },
   components: {
@@ -65,4 +80,7 @@ export default {
   align-items: center
   border: 1px solid #e1e1ff
   border-radius: 10px
+
+  &:hover
+    border-color: #302ecd
 </style>
