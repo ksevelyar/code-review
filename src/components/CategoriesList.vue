@@ -32,7 +32,7 @@ export default {
         },
         {
           name: "Testing Methodology",
-          id: 0,
+          id: 1,
           score: 0,
           statements: [
             { id: 11, name: "Decide the components I need" },
@@ -45,7 +45,7 @@ export default {
         },
         {
           name: "SOLID",
-          id: 3,
+          id: 2,
           score: 0,
           statements: [
             { id: 21, name: "Single responsibility" },
